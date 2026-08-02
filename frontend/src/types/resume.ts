@@ -1,6 +1,5 @@
-import { PersonalInfo } from "./personal";
-
+import type { PersonalInfo } from "./personal";
 
 export interface Resume {
-    personal: PersonalInfo;
+  personal: PersonalInfo;
 }

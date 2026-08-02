@@ -5,4 +5,5 @@ export interface PersonalInfo {
     github?:string;
     linkedin?: string;
     website?: string;
+    summary?: string;
 }
