@@ -31,7 +31,7 @@ function ResumeForm({
       ...resume,
       personal: {
         ...resume.personal,
-        phone: parseInt(e.target.value),
+        phone: e.target.value,
       },
     });
   }
@@ -67,60 +67,77 @@ function ResumeForm({
   }
 
   return (
-    <>
-      <label>
-        Nome:
-        <input
-          required
-          type="text"
-          placeholder="Seu nome"
-          value={resume.personal.fullName}
-          onChange={handleNameChange}
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          required
-          type="email"
-          placeholder="Email"
-          value={resume.personal.email}
-          onChange={handleEmailChange}
-        />
-      </label>
-      <label>
-        Telefone:
-        <input required type="tel" placeholder="(00) 0000-0000" 
-        onChange={handlePhoneChange}
-        />
-      </label>
-      <label>
-        Github:
-        <input
-          type="text"
-          placeholder="https://github.com/username"
-          value={resume.personal.github}
-          onChange={handleGithubChange}
-
-        />
-      </label>
-      <label htmlFor="">
-        {" "}
-        Linkedin
-        <input value={resume.personal.linkedin} 
-        onChange={handleLinkedinChange}
-        />
-      </label>
-      <label>
-        Website:
-        <input
-          type="text"
-          placeholder="https://www.website.com.br"
-          value={resume.personal.website}
-          onChange={handleWebsiteChange}
-        />
-      </label>
-    </>
+    <div className="flex flex-col gap-4">
+      <h1 className="text-center text-3xl font-bold">Formulário de Resumo</h1>
+      <form>
+        <label className="flex gap-2">
+          Nome:
+          <input
+            required
+            type="text"
+            placeholder="Seu nome"
+            value={resume.personal.fullName}
+            onChange={handleNameChange}
+          />
+        </label>
+        <label className="flex gap-2">
+          Email:
+          <input
+            required
+            type="text"
+            placeholder="Email"
+            value={resume.personal.fullName}
+            onChange={handleNameChange}
+          />
+        </label>
+        <label className="flex gap-2">
+          Email:
+          <input
+            required
+            type="email"
+            placeholder="Email"
+            value={resume.personal.email}
+            onChange={handleEmailChange}
+          />
+        </label>
+        <label className="flex gap-2">
+          Telefone:
+          <input
+            required
+            type="tel"
+            placeholder="(00) 0000-0000"
+            onChange={handlePhoneChange}
+          />
+        </label>
+        <label className="flex gap-2">
+          Github:
+          <input
+            type="text"
+            placeholder="https://github.com/username"
+            value={resume.personal.github}
+            onChange={handleGithubChange}
+          />
+        </label >
+        <label htmlFor="" className="flex gap-2 ">
+          {" "}
+          Linkedin: 
+          <input
+          placeholder="www.linkedin.com"
+            value={resume.personal.linkedin}
+            onChange={handleLinkedinChange}
+          />
+        </label>
+        <label className="flex gap-2">
+          Website:
+          <input
+            type="text"
+            placeholder="https://www.website.com.br"
+            value={resume.personal.website}
+            onChange={handleWebsiteChange}
+          />
+        </label>
+      </form>
+    </div>
   );
 }
 

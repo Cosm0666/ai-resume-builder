@@ -8,7 +8,8 @@ function Builder() {
     personal: {
       fullName: "",
       email: "",
-      phone: 0,
+      phone: "",
+      summary: "",
       github: "",
       linkedin: "",
       website: "",
@@ -16,11 +17,17 @@ function Builder() {
   });
 
   return (
-    <div className="builder">
-      <ResumeForm resume={resume} setResume={setResume} />
-      <ResumePreview resume={resume} />
-    </div>
-  );       
+    <main className="max-w-7xl mx-auto my-8 border border-gray-300 p-8 rounded-lg">
+      <div className="flex gap-8">
+        <section className="flex-1">
+          <ResumeForm resume={resume} setResume={setResume} />
+        </section>
+        <section className="flex-1">
+          <ResumePreview resume={resume} />
+        </section>
+      </div>
+    </main>
+  );
 }
 
 export default Builder;

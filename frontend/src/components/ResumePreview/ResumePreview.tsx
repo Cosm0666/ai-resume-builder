@@ -1,7 +1,10 @@
+import Header from "./Header";
+
 function ResumePreview({ resume }: any) {
   return (
-    <div>
-      <h1>{resume.personal.fullName || "Your Name"} </h1>
+    <div className="w-1/2">
+      <Header/>
+      <h1>{resume.personal.fullName || "Seu Nome"} </h1>
     </div>
   );
 }
