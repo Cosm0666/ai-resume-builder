@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Resume } from "../../types/resume";
+import Summary from "./Summary";
 
 function ResumeForm({
   resume,
@@ -91,16 +92,6 @@ function ResumeForm({
           />
         </label>
         <label className="flex gap-2">
-          Email:
-          <input
-            required
-            type="email"
-            placeholder="Email"
-            value={resume.personal.email}
-            onChange={handleEmailChange}
-          />
-        </label>
-        <label className="flex gap-2">
           Telefone:
           <input
             required
@@ -112,17 +103,18 @@ function ResumeForm({
         <label className="flex gap-2">
           Github:
           <input
+            className="min-w-2xs"
             type="text"
             placeholder="https://github.com/username"
             value={resume.personal.github}
             onChange={handleGithubChange}
           />
-        </label >
+        </label>
         <label htmlFor="" className="flex gap-2 ">
           {" "}
-          Linkedin: 
+          Linkedin:
           <input
-          placeholder="www.linkedin.com"
+            placeholder="www.linkedin.com"
             value={resume.personal.linkedin}
             onChange={handleLinkedinChange}
           />
@@ -137,6 +129,10 @@ function ResumeForm({
           />
         </label>
       </form>
+      <label>
+        Sobre mim:
+        <Summary resume={resume} setResume={setResume} />
+      </label>
     </div>
   );
 }

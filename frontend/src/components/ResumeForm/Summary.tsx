@@ -7,22 +7,26 @@ function Summary({
   resume: Resume;
   setResume: React.Dispatch<React.SetStateAction<Resume>>;
 }) {
-    function handleSummaryChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setResume({
-            ...resume,
-            personal: {
-                ...resume.personal,
-                summary: e.target.value,
-            }
-        })
-    }
+  function handleSummaryChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setResume({
+      ...resume,
+      personal: {
+        ...resume.personal,
+        summary: e.target.value,
+      },
+    });
+  }
 
-    return (
-        <div className="summary">
-            <label htmlFor="">Summary</label>
-            <input type="text" value={resume.personal.summary} onChange={handleSummaryChange}/>
-        </div>
-    );
+  return (
+    <textarea
+      placeholder="Sobre mim: "
+      className="flex p-4 rounded-lg border border-gray-300 w-full h-3.5xl"
+      name=""
+      id=""
+      value={resume.personal.summary}
+      onChange={handleSummaryChange}
+    />
+  );
 }
 
 export default Summary;
