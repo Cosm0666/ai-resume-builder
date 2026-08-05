@@ -3,6 +3,6 @@ export interface Experience {
     company: string;
     location: string;
     startDate: Date;
-    endDate?: Date;
+    endDate?: Date | undefined;
     description: string[];
 }

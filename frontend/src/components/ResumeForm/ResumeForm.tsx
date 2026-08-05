@@ -1,6 +1,7 @@
 import type React from "react";
 import type { Resume } from "../../types/resume";
 import Summary from "./Summary";
+import Experience from "./ExperienceSection";
 
 function ResumeForm({
   resume,
