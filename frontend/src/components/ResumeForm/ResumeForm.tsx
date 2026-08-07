@@ -2,6 +2,7 @@ import type React from "react";
 import type { Resume } from "../../types/resume";
 import Summary from "./Summary";
 import Experience from "./ExperienceSection";
+import EducationSection from "./EducationSection";
 
 function ResumeForm({
   resume,
@@ -89,7 +90,7 @@ function ResumeForm({
             type="text"
             placeholder="Email"
             value={resume.personal.fullName}
-            onChange={handleNameChange}
+            onChange={handleEmailChange}
           />
         </label>
         <label className="flex gap-2">
@@ -134,6 +135,9 @@ function ResumeForm({
         Sobre mim:
         <Summary resume={resume} setResume={setResume} />
       </label>
+
+      <Experience resume={resume} setResume={setResume} />
+      <EducationSection resume={resume} setResume={setResume} />
     </div>
   );
 }

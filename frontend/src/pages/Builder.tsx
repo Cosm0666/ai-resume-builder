@@ -2,7 +2,7 @@ import { useState } from "react";
 import ResumeForm from "../components/ResumeForm/ResumeForm";
 import ResumePreview from "../components/ResumePreview/ResumePreview";
 import type { Resume } from "../types/resume";
-import Experience from "../components/ResumeForm/ExperienceSection";
+
 
 function Builder() {
   const [resume, setResume] = useState<Resume>({
@@ -23,6 +23,14 @@ function Builder() {
       endDate: undefined,
       description: [],
     },
+    education: {
+      title: "",
+      school: "",
+      location: "",
+      startDate: new Date(),
+      endDate: undefined,
+      description: [],
+    },
   });
 
   return (
@@ -33,9 +41,6 @@ function Builder() {
         </section>
         <section className="flex-1">
           <ResumePreview resume={resume} />
-        </section>
-        <section>
-          <Experience resume={resume} setResume={setResume} />
         </section>
       </div>
     </main>
