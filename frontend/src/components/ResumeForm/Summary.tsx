@@ -1,3 +1,4 @@
+import type React from "react";
 import type { Resume } from "../../types/resume";
 
 function Summary({
@@ -19,10 +20,8 @@ function Summary({
 
   return (
     <textarea
-      placeholder="Sobre mim: "
-      className="flex p-4 rounded-lg border border-gray-300 w-full h-3.5xl"
-      name=""
-      id=""
+      placeholder="Escreva um breve resumo profissional para o seu currículo"
+      className="min-h-[9rem] w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-sm text-slate-900 outline-none transition focus:border-slate-500"
       value={resume.personal.summary}
       onChange={handleSummaryChange}
     />
