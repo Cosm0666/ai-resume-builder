@@ -69,75 +69,167 @@ function ResumeForm({
     });
   }
 
-  return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-center text-3xl font-bold">Formulário de Resumo</h1>
-      <form>
-        <label className="flex gap-2">
-          Nome:
-          <input
-            required
-            type="text"
-            placeholder="Seu nome"
-            value={resume.personal.fullName}
-            onChange={handleNameChange}
-          />
-        </label>
-        <label className="flex gap-2">
-          Email:
-          <input
-            required
-            type="text"
-            placeholder="Email"
-            value={resume.personal.fullName}
-            onChange={handleEmailChange}
-          />
-        </label>
-        <label className="flex gap-2">
-          Telefone:
-          <input
-            required
-            type="tel"
-            placeholder="(00) 0000-0000"
-            onChange={handlePhoneChange}
-          />
-        </label>
-        <label className="flex gap-2">
-          Github:
-          <input
-            className="min-w-2xs"
-            type="text"
-            placeholder="https://github.com/username"
-            value={resume.personal.github}
-            onChange={handleGithubChange}
-          />
-        </label>
-        <label htmlFor="" className="flex gap-2 ">
-          {" "}
-          Linkedin:
-          <input
-            placeholder="www.linkedin.com"
-            value={resume.personal.linkedin}
-            onChange={handleLinkedinChange}
-          />
-        </label>
-        <label className="flex gap-2">
-          Website:
-          <input
-            type="text"
-            placeholder="https://www.website.com.br"
-            value={resume.personal.website}
-            onChange={handleWebsiteChange}
-          />
-        </label>
-      </form>
-      <label>
-        Sobre mim:
-        <Summary resume={resume} setResume={setResume} />
-      </label>
+  function handleSkillsChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setResume({
+      ...resume,
+      skills: e.target.value
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean),
+    });
+  }
 
-      <Experience resume={resume} setResume={setResume} />
-      <EducationSection resume={resume} setResume={setResume} />
+  function handleProjectsChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const projects = e.target.value
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((title) => ({ title, description: [] }));
+    setResume({
+      ...resume,
+      projects,
+    });
+  }
+
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+        <h1 className="text-3xl font-bold text-slate-900">
+          Formulário de Resumo
+        </h1>
+        <p className="mt-2 text-sm text-slate-600">
+          Preencha seus dados e veja o currículo atualizar em tempo real.
+        </p>
+      </div>
+
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 className="text-xl font-semibold text-slate-900">
+          Informações pessoais
+        </h2>
+        <div className="mt-5 grid gap-4">
+          <label className="flex flex-col gap-2 text-sm text-slate-700">
+            Nome completo
+            <input
+              required
+              type="text"
+              placeholder="Seu nome"
+              className="rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+              value={resume.personal.fullName}
+              onChange={handleNameChange}
+            />
+          </label>
+          <label className="flex flex-col gap-2 text-sm text-slate-700">
+            Email
+            <input
+              required
+              type="email"
+              placeholder="email@exemplo.com"
+              className="rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+              value={resume.personal.email}
+              onChange={handleEmailChange}
+            />
+          </label>
+          <label className="flex flex-col gap-2 text-sm text-slate-700">
+            Telefone
+            <input
+              required
+              type="tel"
+              placeholder="(00) 00000-0000"
+              className="rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+              value={resume.personal.phone}
+              onChange={handlePhoneChange}
+            />
+          </label>
+          <label className="flex flex-col gap-2 text-sm text-slate-700">
+            Github
+            <input
+              type="text"
+              placeholder="https://github.com/username"
+              className="rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+              value={resume.personal.github}
+              onChange={handleGithubChange}
+            />
+          </label>
+          <label className="flex flex-col gap-2 text-sm text-slate-700">
+            Linkedin
+            <input
+              type="text"
+              placeholder="https://www.linkedin.com/in/username"
+              className="rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+              value={resume.personal.linkedin}
+              onChange={handleLinkedinChange}
+            />
+          </label>
+          <label className="flex flex-col gap-2 text-sm text-slate-700">
+            Website
+            <input
+              type="text"
+              placeholder="https://www.website.com"
+              className="rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+              value={resume.personal.website}
+              onChange={handleWebsiteChange}
+            />
+          </label>
+        </div>
+      </section>
+
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 className="text-xl font-semibold text-slate-900">
+          Resumo profissional
+        </h2>
+        <div className="mt-4">
+          <Summary resume={resume} setResume={setResume} />
+        </div>
+      </section>
+
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 className="text-xl font-semibold text-slate-900">Experiência</h2>
+        <div className="mt-5">
+          <Experience resume={resume} setResume={setResume} />
+        </div>
+      </section>
+
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 className="text-xl font-semibold text-slate-900">Educação</h2>
+        <div className="mt-5">
+          <EducationSection resume={resume} setResume={setResume} />
+        </div>
+      </section>
+
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 className="text-xl font-semibold text-slate-900">Skills</h2>
+        <div className="mt-4">
+          <label className="flex flex-col gap-2 text-sm text-slate-700">
+            Skills (um por linha)
+            <textarea
+              className="min-h-[6rem] w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+              value={resume.skills.join("\n")}
+              onChange={handleSkillsChange}
+            />
+          </label>
+        </div>
+      </section>
+
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 className="text-xl font-semibold text-slate-900">Projetos</h2>
+        <div className="mt-4">
+          <label className="flex flex-col gap-2 text-sm text-slate-700">
+            Projetos (um por linha)
+            <label htmlFor="" className="flex flex-col gap-2">
+              Titulo
+              <input
+                type="text"
+                className="rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+              />
+            </label>
+            <textarea
+              className="min-h-[6rem] w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+              value={resume.projects.map((p) => p.title).join("\n")}
+              onChange={handleProjectsChange}
+            />
+          </label>
+        </div>
+      </section>
     </div>
   );
 }
